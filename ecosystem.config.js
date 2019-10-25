@@ -26,7 +26,7 @@ module.exports = {
       repo: 'git@github.com:instantrahmen/MoonBot.git',
       path: '/var/www/rahmen/moonbot',
       'post-deploy':
-        'npm install && pm2 reload ecosystem.config.js --env production',
+        'npm install && npm run build && pm2 reload ecosystem.config.js --env production',
     },
   },
 };
