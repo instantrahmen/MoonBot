@@ -42,7 +42,7 @@ export const commands = {
     ];
     message.channel.send(commandHelpInfo.filter(cmd => !!cmd).join('  \n'));
   },
-  debug: ({ message, args, error = null,  }) => {
+  debug: ({ message, args, error = null }) => {
     if (error) {
       message.channel.send(`
       **Error**
@@ -51,7 +51,7 @@ export const commands = {
       ${'```'}
       `);
     }
-    message.channel.send('Check logs for debug info 💙');
+    message.channel.send('💚 Check logs for debug info 💚');
     console.log({ message });
   },
   boop: async ({ message, args }) => {
@@ -104,14 +104,7 @@ export const commands = {
       );
     }
   },
-  birthday: async ({
-    message,
-    args,
-  }: {
-    message: Message;
-    args: string[];
-  }) => {
-
+  birthday: async ({ message, args }: { message: Message; args: string[] }) => {
     const [subcommand, ...bdayArray] = args;
     const bday = bdayArray.join(' ');
     if (subcommand === 'set') {
@@ -129,11 +122,11 @@ export const commands = {
         );
 
         message.channel.send(
-          `Birthday set to ${format(parsedBday, 'do MMMM')}`
+          `Birthday set to ${format(parsedBday, 'MMMM do')}`
         );
       } catch (e) {
         message.channel.send(
-          'You need to register using `moon!register` before setting a birthday!'
+          'You need to register using `moon!register` before setting a birthday! 💚'
         );
         console.error(e);
       }
@@ -156,7 +149,6 @@ ${bdayUsers.slice(0, -1).join(',') + ', and ' + bdayUsers.slice(-1)}
     }
   },
   cutie: ({ message, args }) => {
-
     if (args.length > 0) {
       const cutieRating = Math.floor(Math.random() * 7);
 
@@ -198,7 +190,7 @@ ${bdayUsers.slice(0, -1).join(',') + ', and ' + bdayUsers.slice(-1)}
   register: async ({ message, args }) => {
     try {
       if (message.author.bot) {
-        return message.channel.send(`Sorry, robots can't have an account! 💙`);
+        return message.channel.send(`Sorry, robots can't have an account! 💚`);
       }
 
       await User.create({
@@ -215,11 +207,11 @@ ${bdayUsers.slice(0, -1).join(',') + ', and ' + bdayUsers.slice(-1)}
     } catch (e) {
       if (e.code === 11000) {
         return message.channel.send(
-          'It looks like you already have an account. No need to create a second one :) 💙💙💙'
+          'It looks like you already have an account. No need to create a second one :) 💚'
         );
       }
       message.channel.send(
-        'An unknown error occurred. Please contact Rahmen for support. 💙'
+        'An unknown error occurred. Please contact Rahmen for support. 💚'
       );
       console.log(e);
     }
