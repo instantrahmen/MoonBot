@@ -198,6 +198,9 @@ ${bdayUsers.slice(0, -1).join(',') + ', and ' + bdayUsers.slice(-1)}
       message.channel.send('Please provide a username');
     }
   },
+  shiro: ({ message, args }) => {
+    message.channel.send(`Shiro is the cutest hiro <3`);
+  },
   test: ({ message, args, helpInfo = false }) => {
     if (helpInfo) return 'Test if the bot server is working and online';
     message.channel.send(`I'm working and online!`);
