@@ -68,6 +68,9 @@ export const commands = {
   shiro: ({ message, args }) => {
     message.channel.send(`> Shiro is the cutest hiro <3`);
   },
+  vocal: ({ message, args }) => {
+    message.channel.send(`> Vocal is a super cutie! <3`);
+  },
   test: ({ message, args }) => {
     message.channel.send(`> I'm online and working!`);
   },
