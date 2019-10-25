@@ -27,9 +27,7 @@ export const help = {
 };
 
 export const commands = {
-  help: ({ message, args, helpInfo = false }) => {
-    if (helpInfo) return 'Show this information again';
-
+  help: ({ message, args }) => {
     const commandHelpInfo = [
       '[**Note:** This list will grow as I continue to work on the bot]',
 
@@ -44,9 +42,7 @@ export const commands = {
     ];
     message.channel.send(commandHelpInfo.filter(cmd => !!cmd).join('  \n'));
   },
-  debug: ({ message, args, error = null, helpInfo = false }) => {
-    if (helpInfo)
-      return '[dev mode only] Output debug logs to the server console';
+  debug: ({ message, args, error = null,  }) => {
     if (error) {
       message.channel.send(`
       **Error**
@@ -58,70 +54,63 @@ export const commands = {
     message.channel.send('Check logs for debug info 💙');
     console.log({ message });
   },
-  boop: async ({ message, args, helpInfo }) => {
+  boop: async ({ message, args }) => {
     const gif = await getRandomGif({ keywords: ['anime', 'boop', 'nose'] });
-
-    if (helpInfo) return 'Boop somebody!';
     if (args.length >= 1) {
-      message.channel.send(`*${message.member.user} booped ${args[0]}!*`, {
+      message.channel.send(`> *${message.member.user} boops ${args[0]}!*`, {
         files: [gif],
       });
     } else {
-      message.channel.send(`*${message.member.user} booped... nobody?!*`, {
+      message.channel.send(`> *${message.member.user} boops... nobody?!*`, {
         files: [gif],
       });
     }
   },
-  poke: async ({ message, args, helpInfo }) => {
+  poke: async ({ message, args }) => {
     const gif = await getRandomGif({ keywords: ['anime', 'boop', 'poke'] });
 
     if (args.length >= 1) {
-      message.channel.send(`> *${message.member.user} poked ${args[0]}!* \n`, {
+      message.channel.send(`> *${message.member.user} pokes ${args[0]}!* \n`, {
         files: [gif],
       });
     } else {
-      message.channel.send(`> *${message.member.user} poked... nobody?!* \n`, {
+      message.channel.send(`> *${message.member.user} pokes... nobody?!* \n`, {
         files: [gif],
       });
     }
   },
-  hug: async ({ message, args, helpInfo }) => {
+  hug: async ({ message, args }) => {
     const gif = await getRandomGif({ keywords: ['hug', 'anime'] });
 
     if (args.length >= 1) {
-      message.channel.send(`> *${message.member.user} hugged ${args[0]}!* \n`, {
+      message.channel.send(`> *${message.member.user} hugs ${args[0]}!* \n`, {
         files: [gif],
       });
     } else {
-      message.channel.send(`> *${message.member.user} hugged... nobody?!* \n`, {
+      message.channel.send(`> *${message.member.user} hugs... nobody?!* \n`, {
         files: [gif],
       });
     }
   },
 
-  apple: ({ message, args, helpInfo }) => {
-    if (helpInfo) return 'Give somebody an apple!';
+  apple: ({ message, args }) => {
     if (args.length >= 1) {
       message.channel.send(
-        `*${message.member.user} gave ${args[0]} an apple! 🍎*`
+        `*${message.member.user} gives ${args[0]} an apple! 🍎*`
       );
     } else {
       message.channel.send(
-        `*${message.member.user} gave an apple to... nobody?! 🍎*`
+        `*${message.member.user} gives an apple to... nobody?! 🍎*`
       );
     }
   },
   birthday: async ({
     message,
     args,
-    helpInfo = false,
   }: {
     message: Message;
     args: string[];
-    helpInfo: boolean;
   }) => {
-    if (helpInfo)
-      return 'Set your birthday to get an automated happy birthday message';
 
     const [subcommand, ...bdayArray] = args;
     const bday = bdayArray.join(' ');
@@ -166,8 +155,7 @@ ${bdayUsers.slice(0, -1).join(',') + ', and ' + bdayUsers.slice(-1)}
       // message.channel.send(`Feature not yet ready`);
     }
   },
-  cutie: ({ message, args, helpInfo = false }) => {
-    if (helpInfo) return 'Decide if someone is a cutie (hint: you are)';
+  cutie: ({ message, args }) => {
 
     if (args.length > 0) {
       const cutieRating = Math.floor(Math.random() * 7);
@@ -201,8 +189,7 @@ ${bdayUsers.slice(0, -1).join(',') + ', and ' + bdayUsers.slice(-1)}
   shiro: ({ message, args }) => {
     message.channel.send(`Shiro is the cutest hiro <3`);
   },
-  test: ({ message, args, helpInfo = false }) => {
-    if (helpInfo) return 'Test if the bot server is working and online';
+  test: ({ message, args }) => {
     message.channel.send(`I'm working and online!`);
   },
   default: ({ message, args }) => {
