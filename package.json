@@ -26,6 +26,6 @@
   },
   "scripts": {
     "start": "ts-node src/index.ts",
-    "build": "tsc"
+    "build": "rm -rf ./build && tsc"
   }
 }
