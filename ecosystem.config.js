@@ -7,7 +7,7 @@ module.exports = {
     // First application
     {
       name: 'MoonBot',
-      script: 'dist/index.js',
+      script: './dist/index.js',
       env_production: {
         NODE_ENV: 'production',
       },
