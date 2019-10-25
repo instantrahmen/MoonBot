@@ -4,7 +4,7 @@ import { commands } from './commands';
 
 const client = new Discord.Client();
 
-const prefix = 'moon!';
+const prefix = process.env.NODE_ENV === 'production' ? 'moon!' : '__moon!';
 
 client.once('ready', () => {
   console.log('Ready!');
