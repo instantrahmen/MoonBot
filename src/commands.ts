@@ -86,7 +86,7 @@ export const commands = {
     }
   },
   hug: async ({ message, args, helpInfo }) => {
-    const gif = await getRandomGif({ keywords: ['anime', 'hug'] });
+    const gif = await getRandomGif({ keywords: ['hug', 'anime'] });
 
     if (args.length >= 1) {
       message.channel.send(`> *${message.member.user} hugged ${args[0]}!* \n`, {
