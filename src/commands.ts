@@ -13,7 +13,7 @@ export const help = {
   apple: { desc: `Give somebody an apple!`, usage: `moon!apple <user>` },
   hug: { desc: `Give somebody a hug!`, usage: `moon!hug <user>` },
   birthday: {
-    desc: `Remember member birthday's`,
+    desc: `Remember birthdays`,
     usage: `moon!birthday set <date> ${'`'} or ${'`'}moon!birthday check`,
   },
   cutie: {
