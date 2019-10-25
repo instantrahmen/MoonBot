@@ -7,7 +7,7 @@ module.exports = {
     // First application
     {
       name: 'MoonBot',
-      script: 'index.js',
+      script: 'dist/index.js',
       env: {
         COMMON_VARIABLE: 'true',
       },
@@ -26,8 +26,8 @@ module.exports = {
       user: 'root',
       host: 'pointsmap.com',
       ref: 'origin/master',
-      repo: 'git@github.com:repo.git',
-      path: '/var/www/moonbot',
+      repo: 'git@github.com:instantrahmen/MoonBot.git',
+      path: '/var/www/rahmen/moonbot',
       'post-deploy':
         'npm install && pm2 reload ecosystem.config.js --env production',
     },
