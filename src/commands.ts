@@ -11,6 +11,7 @@ export const help = {
   boop: { desc: `Boop somebody`, usage: `moon!boop <user>` },
   poke: { desc: `Poke somebody`, usage: `moon!poke <user>` },
   apple: { desc: `Give somebody an apple!`, usage: `moon!apple <user>` },
+  hug: { desc: `Give somebody a hug!`, usage: `moon!hug <user>` },
   birthday: {
     desc: `Remember member birthday's`,
     usage: `moon!birthday set <date> ${'`'} or ${'`'}moon!birthday check`,
@@ -85,7 +86,7 @@ export const commands = {
     }
   },
   hug: async ({ message, args, helpInfo }) => {
-    const gif = await getRandomGif({ keywords: ['anime', 'boop', 'poke'] });
+    const gif = await getRandomGif({ keywords: ['anime', 'hug'] });
 
     if (args.length >= 1) {
       message.channel.send(`> *${message.member.user} hugged ${args[0]}!* \n`, {
