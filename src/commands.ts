@@ -169,7 +169,7 @@ ${bdayUsers.slice(0, -1).join(',') + ', and ' + bdayUsers.slice(-1)}
           message.channel.send(`${args[0]} is a super huge cutie!`);
           break;
         case 6:
-          message.channel.send(`${args[0]} is a the biggest cutie!`);
+          message.channel.send(`${args[0]} is the biggest cutie!`);
           break;
         default:
           message.channel.send(`${args[0]} is a cutie!`);
