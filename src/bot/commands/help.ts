@@ -4,6 +4,7 @@ export const helpInfo = {
   poke: { desc: `Poke somebody`, usage: `moon!poke <user>` },
   apple: { desc: `Give somebody an apple!`, usage: `moon!apple <user>` },
   hug: { desc: `Give somebody a hug!`, usage: `moon!hug <user>` },
+  wheeze: { desc: `Wheeze`, usage: `moon!wheeze` },
   birthday: {
     desc: `Remember birthdays`,
     usage: `moon!birthday set <date> ${'`'} or ${'`'}moon!birthday check`,

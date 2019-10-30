@@ -23,6 +23,10 @@ export const commands = {
       });
     }
   },
+  hushle: async ({ message, args }) => {
+    message.channel.send(`Hushle is a bitch`);
+  },
+
   poke: async ({ message, args }) => {
     const gif = await getRandomGif({ keywords: ['anime', 'boop', 'poke'] });
 
