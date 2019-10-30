@@ -39,8 +39,10 @@ export const commands = {
   wheeze: async ({ message, args }) => {
     // const gif = await getRandomGif({ keywords: ['anime', 'boop', 'poke'] });
 
-    message.channel.send(`> *${message.member.user} pokes ${args[0]}!* \n`, {
-      files: ['https://tenor.com/8pJJ.gif'],
+    message.channel.send(`> *${message.member.user} wheezes* \n`, {
+      files: [
+        'https://media.tenor.com/images/7f4f32991a677d02172305fe793fdb73/tenor.gif',
+      ],
     });
   },
   hug: async ({ message, args }) => {
