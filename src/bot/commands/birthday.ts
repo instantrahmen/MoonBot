@@ -1,7 +1,7 @@
 import * as chrono from 'chrono-node';
 import { format, parse } from 'date-fns';
 
-import { User } from '../db';
+import { User } from '../../db';
 import { checkForBirthdays } from '../birthday-check';
 
 export const birthday = async ({ message, args }) => {

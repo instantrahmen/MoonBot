@@ -1,5 +1,5 @@
 import * as schedule from 'node-schedule';
-import { User, db } from './db';
+import { User, db } from '../db';
 
 // schedule.scheduleJob('0 0 * * *', () => {});
 

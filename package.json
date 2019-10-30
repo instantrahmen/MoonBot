@@ -1,7 +1,7 @@
 {
-  "name": "tsuki-test-bot",
+  "name": "moon-bot",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/bot/index.ts",
   "license": "MIT",
   "dependencies": {
     "@types/axios": "^0.14.0",
@@ -13,7 +13,10 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.7.6",
+    "next": "^9.1.1",
     "node-schedule": "^1.3.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7"
   },
@@ -25,7 +28,7 @@
     "typescript": "^3.6.4"
   },
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "ts-node src/bot/index.ts",
     "build": "rm -rf ./dist && tsc"
   }
 }

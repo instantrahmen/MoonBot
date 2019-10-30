@@ -12,6 +12,10 @@ export const UserSchema = new Schema({
   discriminator: Number,
   avatar: String,
   bot: Boolean,
+  admin: Boolean,
+  bio: String,
+  exp: Number,
+  level: Number,
 });
 
 export const User = model('User', UserSchema);

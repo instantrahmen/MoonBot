@@ -1,4 +1,4 @@
-import { User } from '../db';
+import { User } from '../../db';
 
 export const register = async ({ message, args }) => {
   try {

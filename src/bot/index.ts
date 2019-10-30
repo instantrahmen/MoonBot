@@ -1,6 +1,8 @@
 require('dotenv').config();
 import * as Discord from 'discord.js';
+
 import { commands } from './commands';
+import { startExpressServer } from '../express-server';
 
 const client = new Discord.Client();
 
@@ -29,3 +31,4 @@ client.on('message', message => {
 });
 
 client.login(process.env.DISCORD_TOKEN);
+startExpressServer();
