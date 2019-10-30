@@ -1,9 +1,4 @@
-import { Message } from 'discord.js';
-import * as chrono from 'chrono-node';
-import { format, parse } from 'date-fns';
-
 import { getRandomGif } from '../gif';
-import { checkForBirthdays } from '../birthday-check';
 import { help } from './help';
 import { debug } from './debug';
 import { birthday } from './birthday';
@@ -40,6 +35,13 @@ export const commands = {
         files: [gif],
       });
     }
+  },
+  wheeze: async ({ message, args }) => {
+    // const gif = await getRandomGif({ keywords: ['anime', 'boop', 'poke'] });
+
+    message.channel.send(`> *${message.member.user} pokes ${args[0]}!* \n`, {
+      files: ['https://tenor.com/8pJJ.gif'],
+    });
   },
   hug: async ({ message, args }) => {
     const gif = await getRandomGif({ keywords: ['hug', 'anime'] });
