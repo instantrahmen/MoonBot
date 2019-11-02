@@ -23,9 +23,6 @@ export const commands = {
       });
     }
   },
-  hushle: async ({ message, args }) => {
-    message.channel.send(`Hushle is a bitch`);
-  },
 
   poke: async ({ message, args }) => {
     const gif = await getRandomGif({ keywords: ['anime', 'boop', 'poke'] });
@@ -78,6 +75,9 @@ export const commands = {
   },
   vocal: ({ message, args }) => {
     message.channel.send(`> Vocal is a super cutie! <3`);
+  },
+  hushle: ({ message, args }) => {
+    message.channel.send(`Hushle is a bitch`);
   },
   test: ({ message, args }) => {
     message.channel.send(`> I'm online and working!`);
