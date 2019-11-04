@@ -16,6 +16,7 @@ export const UserSchema = new Schema({
   bio: String,
   exp: Number,
   level: Number,
+  // inventory: ,
 });
 
 export const User = model('User', UserSchema);

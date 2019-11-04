@@ -12,7 +12,8 @@ export const commands = {
   cutie,
   register,
   boop: async ({ message, args }) => {
-    const gif = await getRandomGif({ keywords: ['anime', 'boop', 'nose'] });
+    // const gif = await getRandomGif({ keywords: ['anime', 'boop', 'nose'] });
+    const gif = 'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boop_bitch.gif';
     if (args.length >= 1) {
       message.channel.send(`> *${message.member.user} boops ${args[0]}!*`, {
         files: [gif],
