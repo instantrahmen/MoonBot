@@ -16,7 +16,7 @@ export const UserSchema = new Schema({
   bio: String,
   exp: Number,
   level: Number,
-  // inventory: ,
+  color: String,
 });
 
 export const User = model('User', UserSchema);

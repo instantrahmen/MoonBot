@@ -1,9 +1,13 @@
+import parseColor from 'parse-color';
+
 import { getRandomGif } from '../gif';
 import { help } from './help';
 import { debug } from './debug';
 import { birthday } from './birthday';
 import { cutie } from './cutie';
-import { register } from './register';
+import { register, updateUserInfo } from './register';
+import { userSpecificCommands } from './user-specifc-commands';
+import { profile } from './profile';
 
 export const commands = {
   help,
@@ -11,9 +15,32 @@ export const commands = {
   birthday,
   cutie,
   register,
+  profile,
+  setbio: async ({ message, args }) => {
+    try {
+      const bio = args.join(' ');
+      await updateUserInfo({ message, args, bio });
+      message.channel.send(`Bio updated to: \n${bio}`);
+    } catch (e) {
+      message.channel.send(`Error: could not update bio`);
+      console.error(e);
+    }
+  },
+  setcolor: async ({ message, args }) => {
+    try {
+      const color = parseColor(args[0]);
+      console.log({ color });
+      await updateUserInfo({ message, args, color: color.hex });
+      message.channel.send(`Color updated to: \n${color.hex}`);
+    } catch (e) {
+      message.channel.send(`Error: could not update color`);
+      console.error(e);
+    }
+  },
   boop: async ({ message, args }) => {
     // const gif = await getRandomGif({ keywords: ['anime', 'boop', 'nose'] });
-    const gif = 'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boop_bitch.gif';
+    const gif =
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boop_bitch.gif';
     if (args.length >= 1) {
       message.channel.send(`> *${message.member.user} boops ${args[0]}!*`, {
         files: [gif],
@@ -71,19 +98,11 @@ export const commands = {
       );
     }
   },
-  shiro: ({ message, args }) => {
-    message.channel.send(`> Shiro is the cutest hiro <3`);
-  },
-  vocal: ({ message, args }) => {
-    message.channel.send(`> Vocal is a super cutie! <3`);
-  },
-  hushle: ({ message, args }) => {
-    message.channel.send(`Hushle is a bitch`);
-  },
   test: ({ message, args }) => {
     message.channel.send(`> I'm online and working!`);
   },
   default: ({ message, args }) => {
     message.channel.send('> Please provide a valid command');
   },
+  ...userSpecificCommands,
 };

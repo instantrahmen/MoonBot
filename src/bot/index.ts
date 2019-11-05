@@ -2,8 +2,6 @@ require('dotenv').config();
 import * as Discord from 'discord.js';
 
 import { commands } from './commands';
-import { startExpressServer } from '../express-server';
-
 const client = new Discord.Client();
 
 const prefix = process.env.NODE_ENV === 'production' ? 'moon!' : '__moon!';
@@ -17,7 +15,6 @@ client.on('message', message => {
 
   const args = message.content.slice(prefix.length).split(/ +/);
   const command = args.shift().toLowerCase();
-  // console.log({ command });
   if (command.length === 0 || typeof commands[command] === 'undefined') {
     commands.default({ message, args });
   } else {
@@ -31,4 +28,3 @@ client.on('message', message => {
 });
 
 client.login(process.env.DISCORD_TOKEN);
-startExpressServer();

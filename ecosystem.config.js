@@ -6,12 +6,12 @@ module.exports = {
   apps: [
     // First application
     {
-      name: 'MoonBot',
-      script: './dist/bot/index.js',
+      name: "MoonBot",
+      script: "./dist/index.js",
       env_production: {
-        NODE_ENV: 'production',
-      },
-    },
+        NODE_ENV: "production"
+      }
+    }
   ],
 
   /**
@@ -20,13 +20,13 @@ module.exports = {
    */
   deploy: {
     production: {
-      user: 'root',
-      host: 'pointsmap.com',
-      ref: 'origin/master',
-      repo: 'git@github.com:instantrahmen/MoonBot.git',
-      path: '/var/www/rahmen/moonbot',
-      'post-deploy':
-        'npm install && npm run build && pm2 reload ecosystem.config.js --env production',
-    },
-  },
+      user: "root",
+      host: "pointsmap.com",
+      ref: "origin/master",
+      repo: "git@github.com:instantrahmen/MoonBot.git",
+      path: "/var/www/rahmen/moonbot",
+      "post-deploy":
+        "npm install && npm run build && pm2 reload ecosystem.config.js --env production"
+    }
+  }
 };

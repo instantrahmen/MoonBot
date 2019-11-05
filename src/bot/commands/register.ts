@@ -29,3 +29,32 @@ export const register = async ({ message, args }) => {
     console.log(e);
   }
 };
+
+export const updateUserInfo = async ({
+  message,
+  args,
+  bio = undefined,
+  color = undefined,
+}) => {
+  const updatedUserInfo = {
+    name: message.author.username,
+    discriminator: message.author.discriminator,
+    avatar: message.author.avatar,
+    bot: message.author.bot,
+    bio,
+    color,
+    level: 0,
+    exp: 0,
+  };
+
+  for (let prop in updatedUserInfo)
+    if (typeof updatedUserInfo[prop] === 'undefined')
+      delete updatedUserInfo[prop];
+
+  const newUser = await User.findOneAndUpdate(
+    { discordId: message.author.id },
+    updatedUserInfo
+  );
+
+  return newUser;
+};
