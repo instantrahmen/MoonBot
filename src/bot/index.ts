@@ -11,7 +11,8 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  const lowercaseMessage = message.content.toLowerCase();
+  if (!lowercaseMessage.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).split(/ +/);
   const command = args.shift().toLowerCase();
