@@ -1,7 +1,7 @@
 import { User } from '../../db';
 import puppeteer from 'puppeteer';
 
-const clientUrl = 'http://localhost:3000';
+const clientUrl = process.env.CLIENT_URL;
 
 export const profile = async ({ message, args }) => {
   // const user = await User.findOne({
