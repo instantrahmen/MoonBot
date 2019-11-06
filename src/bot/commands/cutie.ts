@@ -1,6 +1,6 @@
 export const cutie = ({ message, args }) => {
   if (args.length > 0) {
-    const cutieRating = Math.floor(Math.random() * 7);
+    const cutieRating = Math.floor(Math.random() * 10);
 
     switch (cutieRating) {
       case 1:
@@ -20,6 +20,11 @@ export const cutie = ({ message, args }) => {
         break;
       case 6:
         message.channel.send(`> ${args[0]} is the biggest cutie!`);
+        break;
+      case 7:
+        message.channel.send(
+          `> ${args[0]} is not a cutie... \n> \n> \n> \n> *(jk you're the biggest one here 💚)*`
+        );
         break;
       default:
         message.channel.send(`> ${args[0]} is a cutie!`);
