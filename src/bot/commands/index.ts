@@ -54,6 +54,7 @@ export const commands = {
       'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Thicc_Baby_Boop.gif',
       'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Bunny_Baby_Boop.gif',
       'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Cutie_Baby_Boop.gif',
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Loli_Neko_Baby_Boop.gif',
     ];
 
     let gif = getRandomGifFromArray({ images: gifs });
