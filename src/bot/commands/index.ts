@@ -9,6 +9,8 @@ import { register, updateUserInfo } from './register';
 import { userSpecificCommands } from './user-specifc-commands';
 import { profile } from './profile';
 
+let lastBoop = 0;
+
 export const commands = {
   help,
   debug,
@@ -38,7 +40,6 @@ export const commands = {
     }
   },
   boop: async ({ message, args }) => {
-    // const gif = await getRandomGif({ keywords: ['anime', 'boop', 'nose'] });
     const gifs = [
       'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boop_bitch.gif',
       'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Neko_Baby_Boop.gif',
@@ -52,10 +53,11 @@ export const commands = {
       'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Teen_Tsuki_Boop.gif',
       'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Thicc_Baby_Boop.gif',
       'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Bunny_Baby_Boop.gif',
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Cutie_Baby_Boop.gif',
     ];
-    // const gif =
-    //   'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boop_bitch.gif';
-    const gif = getRandomGifFromArray({ images: gifs });
+
+    let gif = getRandomGifFromArray({ images: gifs });
+
     if (args.length >= 1) {
       message.channel.send(`> *${message.member.user} boops ${args[0]}!*`, {
         files: [gif],
