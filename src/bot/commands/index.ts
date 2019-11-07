@@ -50,6 +50,8 @@ export const commands = {
       'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Witch_Tsuki_Boop.gif',
       'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Neko_Baby_Boop_Barrage.gif',
       'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Teen_Tsuki_Boop.gif',
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Thicc_Baby_Boop.gif',
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Bunny_Baby_Boop.gif',
     ];
     // const gif =
     //   'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boop_bitch.gif';
