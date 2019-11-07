@@ -36,6 +36,11 @@ export const getRandomGifs = async ({ keywords = [] }) => {
   return [''];
 };
 
+export const getRandomGifFromArray = ({ images }: { images: string[] }) =>
+  images[randomNumber({ max: images.length })];
+
+const randomNumber = ({ max }) => Math.floor(Math.random() * max);
+
 const download = async url => {
   const imagePath = `static/${path.basename(url)}`;
   const writer = fs.createWriteStream(imagePath);

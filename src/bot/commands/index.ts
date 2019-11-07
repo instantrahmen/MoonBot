@@ -1,6 +1,6 @@
 import parseColor from 'parse-color';
 
-import { getRandomGif } from '../gif';
+import { getRandomGif, getRandomGifFromArray } from '../gif';
 import { help } from './help';
 import { debug } from './debug';
 import { birthday } from './birthday';
@@ -39,8 +39,21 @@ export const commands = {
   },
   boop: async ({ message, args }) => {
     // const gif = await getRandomGif({ keywords: ['anime', 'boop', 'nose'] });
-    const gif =
-      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boop_bitch.gif';
+    const gifs = [
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boop_bitch.gif',
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Neko_Baby_Boop.gif',
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Hoody_Tsuki_Boop.gif',
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Punk_Tsuki_Boop.gif',
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/TsuCowmoon_Boop.gif',
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/LunaBoop.gif',
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Adult_Tsuki_Boop.gif',
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Witch_Tsuki_Boop.gif',
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Neko_Baby_Boop_Barrage.gif',
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Teen_Tsuki_Boop.gif',
+    ];
+    // const gif =
+    //   'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boop_bitch.gif';
+    const gif = getRandomGifFromArray({ images: gifs });
     if (args.length >= 1) {
       message.channel.send(`> *${message.member.user} boops ${args[0]}!*`, {
         files: [gif],
