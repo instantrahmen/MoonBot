@@ -40,6 +40,12 @@ export const commands = {
     }
   },
 
+  snapneck: ({ message, args }) => {
+    message.channel.send(
+      `*Shiro snaps their neck!* [placeholder - gif coming soon]  \n`
+    );
+  },
+
   poke: async ({ message, args }) => {
     const gif = await getRandomGif({ keywords: ['anime', 'boop', 'poke'] });
 
