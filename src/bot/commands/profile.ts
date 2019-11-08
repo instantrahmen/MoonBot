@@ -32,3 +32,9 @@ const getPageScreenshot = async (url, path) => {
   await page.screenshot({ path });
   await browser.close();
 };
+
+export const calculateLevel = ({ exp }) => {
+  // I'll start with something simple and just do linear level progression for now.
+  // I want to update this later, but it can't be exponential due to the nature of discord
+  const level = Math.floor(exp / 1000);
+};

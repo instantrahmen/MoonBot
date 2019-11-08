@@ -19,4 +19,10 @@ export const UserSchema = new Schema({
   color: String,
 });
 
+export const ItemSchema = new Schema({
+  name: String,
+  cost: Number,
+  forSale: Boolean,
+});
+
 export const User = model('User', UserSchema);

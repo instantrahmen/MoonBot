@@ -1,6 +1,6 @@
 import parseColor from 'parse-color';
 
-import { getRandomGif, getRandomGifFromArray } from '../gif';
+import { getRandomGif } from '../gif';
 import { help } from './help';
 import { debug } from './debug';
 import { birthday } from './birthday';
