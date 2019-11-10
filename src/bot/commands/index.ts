@@ -47,7 +47,7 @@ export const commands = {
     ];
     let gif = getRandomGifFromArray({ images: gifs });
 
-    message.channel.send(`*Shiro snaps their neck!*`, {
+    message.channel.send(``, {
       files: [gif],
     });
   },
