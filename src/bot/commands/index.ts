@@ -1,6 +1,6 @@
 import parseColor from 'parse-color';
 
-import { getRandomGif } from '../gif';
+import { getRandomGif, getRandomGifFromArray } from '../gif';
 import { help } from './help';
 import { debug } from './debug';
 import { birthday } from './birthday';
@@ -41,9 +41,15 @@ export const commands = {
   },
 
   snapneck: ({ message, args }) => {
-    message.channel.send(
-      `*Shiro snaps their neck!* [placeholder - gif coming soon]  \n`
-    );
+    const gifs = [
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/necksnap/ShiroNeckSnap.gif',
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/necksnap/ShiroNeckSnap2.gif',
+    ];
+    let gif = getRandomGifFromArray({ images: gifs });
+
+    message.channel.send(`*Shiro snaps their neck!*`, {
+      files: [gif],
+    });
   },
 
   poke: async ({ message, args }) => {
