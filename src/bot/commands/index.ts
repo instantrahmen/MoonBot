@@ -52,6 +52,17 @@ export const commands = {
     });
   },
 
+  no: ({ message, args }) => {
+    const gifs = [
+      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/no/ShiroNO.gif',
+    ];
+    let gif = getRandomGifFromArray({ images: gifs });
+
+    message.channel.send(``, {
+      files: [gif],
+    });
+  },
+
   poke: async ({ message, args }) => {
     const gif = await getRandomGif({ keywords: ['anime', 'boop', 'poke'] });
 
