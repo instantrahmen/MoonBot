@@ -11,6 +11,7 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
+  console.log({ message });
   const lowercaseMessage = message.content.toLowerCase();
   if (!lowercaseMessage.startsWith(prefix) || message.author.bot) return;
 
