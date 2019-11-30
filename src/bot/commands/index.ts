@@ -51,10 +51,10 @@ export const commands = async () => ({
       files: [gif],
     });
   },
-
-  clearCache: async ({ message, args }) => {
+  clearcache: ({ message, args }) => {
     clearCommandCache();
-    message.channel.send(`The cache has been cleared`, {});
+
+    message.channel.send(`The cache has been cleared!`, {});
   },
   poke: async ({ message, args }) => {
     const gif = await getRandomGif({ keywords: ['anime', 'boop', 'poke'] });
