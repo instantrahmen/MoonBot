@@ -7,11 +7,12 @@ const client = new Discord.Client();
 const prefix = process.env.NODE_ENV === 'production' ? 'moon!' : '__moon!';
 
 client.once('ready', () => {
-  console.log('Ready!');
+  console.log('Moonbot is ready!');
 });
 
 client.on('message', message => {
-  console.log({ message });
+  // console.log({ message });
+
   const lowercaseMessage = message.content.toLowerCase();
   if (!lowercaseMessage.startsWith(prefix) || message.author.bot) return;
 

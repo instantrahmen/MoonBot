@@ -1,6 +1,6 @@
 import { User } from '../../db';
 
-export const register = async ({ message, args }) => {
+export const register = async ({ message, args, passive = false }) => {
   try {
     if (message.author.bot) {
       return message.channel.send(`> Sorry, robots can't have an account! 💚`);
@@ -14,18 +14,25 @@ export const register = async ({ message, args }) => {
       bot: message.author.bot,
     });
 
-    return message.channel.send(
-      `> Account for ${message.author.username} created successfully`
+    return (
+      !passive &&
+      message.channel.send(
+        `> Account for ${message.author.username} created successfully`
+      )
     );
   } catch (e) {
     if (e.code === 11000) {
-      return message.channel.send(
-        '> It looks like you already have an account. No need to create a second one :) 💚'
+      return (
+        !passive &&
+        message.channel.send(
+          '> It looks like you already have an account. No need to create a second one :) 💚'
+        )
       );
     }
-    message.channel.send(
-      '> An unknown error occurred. Please contact Rahmen for support. 💚'
-    );
+    !passive &&
+      message.channel.send(
+        '> An unknown error occurred. Please contact Rahmen for support. 💚'
+      );
     console.log(e);
   }
 };
