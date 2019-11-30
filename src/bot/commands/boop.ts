@@ -86,6 +86,14 @@ const gifs = [
   'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Kimono%20Tsuki%20Boop%203.gif',
   'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Kimono%20Tsuki%20Boop%202.gif',
 
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%203.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%201.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%202.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Kimono%20Tsuki%20Boop%203.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%204.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%202.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%203.gif',
+
   // dups
   'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%202.gif',
   'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%2010.gif',
@@ -103,6 +111,20 @@ const gifs = [
   'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%201.gif',
   'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Kimono%20Tsuki%20Boop%203.gif',
   'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Kimono%20Tsuki%20Boop%202.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%203.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%201.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%202.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Kimono%20Tsuki%20Boop%203.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%204.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%202.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%203.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%203.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%201.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%202.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Kimono%20Tsuki%20Boop%203.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%204.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%202.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%203.gif',
 ];
 
 export const boop = async ({ message, args }) => {
