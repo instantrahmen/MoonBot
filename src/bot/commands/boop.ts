@@ -186,6 +186,13 @@ const gifs = [
   'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Tsuki%20Boop%201.gif',
   'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Demon%20Boop%201.gif',
   'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%203.gif',
+
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
+  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
 ];
 
 export const boop = async ({ message, args }) => {
