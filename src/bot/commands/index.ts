@@ -6,18 +6,18 @@ import { debug } from './debug';
 import { birthday } from './birthday';
 import { cutie } from './cutie';
 import { boop } from './boop';
+import { allSanityCommands, clearCommandCache } from './sanityCommands';
 import { register, updateUserInfo } from './register';
 import { userSpecificCommands } from './user-specifc-commands';
 import { profile } from './profile';
 
-export const commands = {
+export const commands = async () => ({
   help,
   debug,
   birthday,
   cutie,
   register,
   profile,
-  boop,
   setbio: async ({ message, args }) => {
     try {
       const bio = args.join(' ');
@@ -52,17 +52,10 @@ export const commands = {
     });
   },
 
-  no: ({ message, args }) => {
-    const gifs = [
-      'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/no/ShiroNO.gif',
-    ];
-    let gif = getRandomGifFromArray({ images: gifs });
-
-    message.channel.send(``, {
-      files: [gif],
-    });
+  clearCache: async ({ message, args }) => {
+    clearCommandCache();
+    message.channel.send(`The cache has been cleared`, {});
   },
-
   poke: async ({ message, args }) => {
     const gif = await getRandomGif({ keywords: ['anime', 'boop', 'poke'] });
 
@@ -114,4 +107,6 @@ export const commands = {
     message.channel.send('> Please provide a valid command');
   },
   ...userSpecificCommands,
-};
+  ...(await allSanityCommands()),
+  // Custom implementations of Sanity commands can go below here
+});

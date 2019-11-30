@@ -1,212 +1,35 @@
 import { getRandomGifFromArray } from '../gif';
+import { client, sanityConfig } from '../../sanity';
+import handlebars from 'handlebars';
 
-const gifs = [
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boop_bitch.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Neko_Baby_Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Hoody_Tsuki_Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Punk_Tsuki_Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/TsuCowmoon_Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/LunaBoop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Adult_Tsuki_Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Witch_Tsuki_Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Neko_Baby_Boop_Barrage.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Teen_Tsuki_Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Thicc_Baby_Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Bunny_Baby_Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Cutie_Baby_Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Loli_Neko_Baby_Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Luna%20Boop%206.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Vocal%20Boop%205.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Luna%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Vocal%20Boop%206.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Vocal%20Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Vocal%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Vocal%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Hushle%20Boop%205.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Vocal%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Loli%20Baby%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Luna%20Boop%205.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Goth%20Tsuki%20Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Loli%20Baby%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Hushle%20Boop%207.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Hushle%20Boop%208.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Luna%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Pink%20Tsuki%20Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Hushle%20Boop%2010.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Luna%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Loli%20Baby%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Hushle%20Boop%209.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Hushle%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Hushle%20&%20Baby%20Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Hushle%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Hushle%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Hushle%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Dancer%20Baby%20Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Glasses%20Baby%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Hushle%20Boop%206.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Gothic%20Baby%20Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/Glasses%20Baby%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Rahmen%20Boop%206.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Jen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Jen%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Rahmen%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Rahmen%20Boop%205.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Jen%20&%20Hushle%20Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Chuck%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Demon%20Boop%205.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Demon%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Padoru%20Demon%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Jen%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Rahmen%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Padoru%20Demon%20Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Jen%20&%20Baby%20Boop.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Booka%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Rahmen%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Chuck%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Demon%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Chuck%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Demon%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops/batch-2/Demon%20Boop%203.gif',
-  // New batch 11/29/2019
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%2010.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Kimono%20Tsuki%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%2010.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Rahmen%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Rahmen%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%201.gif',
-
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Kimono%20Tsuki%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Tsuki%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Demon%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%203.gif',
-
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%203.gif',
-
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Vocal%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%2010.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%2010.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%205.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%206.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%207.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%208.gif',
-  // dups
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%2010.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Kimono%20Tsuki%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Rahmen%20Boop%2010.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Rahmen%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Rahmen%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Kimono%20Tsuki%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Kimono%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Loli%20Neko%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Link%20Tsuki%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Tsuki%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Demon%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Tsuki%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Demon%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Tsuki%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Demon%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Tsuki%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Demon%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%203.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Tsuki%20Boop%202.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Tsuki%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Rahmen%20&%20Demon%20Boop%201.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/Old%20School%20Rahmen%20Boop%203.gif',
-
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
-  'https://pointsmap.sfo2.digitaloceanspaces.com/rahmen/moonbot/boops-2/New%20Demon%20Boop%204.gif',
-];
+const getCommandInfo = command => {
+  const query = `*[_type == "commands" && command == $command] {
+    messageText,
+    "gifUrls": gifs[].asset->url
+  }`;
+  const params = { command };
+  return client.fetch(query, params);
+};
 
 export const boop = async ({ message, args }) => {
-  let gif = getRandomGifFromArray({ images: gifs });
+  const { gifUrls, messageText = '' } = (await getCommandInfo('boop'))[0];
+  const gif = getRandomGifFromArray({ images: gifUrls });
 
-  if (args.length >= 1) {
-    message.channel.send(`> *${message.member.user} boops ${args[0]}!*`, {
+  const sender = message.member.user;
+  const target = args.length >= 1 ? args[0] : '... nobody?';
+  return message.channel.send(
+    parseMessageText({ sender, target }, messageText),
+    {
       files: [gif],
-    });
-  } else {
-    message.channel.send(`> *${message.member.user} boops... nobody?!*`, {
-      files: [gif],
-    });
-  }
+    }
+  );
+};
+
+const parseMessageText = (context = {}, source: string) => {
+  const unescapedSource = source.replace('{{', '{{{').replace('}}', '}}}');
+  const template = handlebars.compile(`${unescapedSource}`);
+
+  const result = template(context);
+  console.log({ source, context, result });
+  return result;
 };
