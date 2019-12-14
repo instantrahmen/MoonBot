@@ -45,7 +45,16 @@ export const sanityCommand = command => async ({ message, args }) => {
   const target = args.length >= 1 ? args[0] : 'nobody';
 
   return message.channel.send(
-    parseMessageText({ sender, target }, messageText),
+    parseMessageText(
+      {
+        sender,
+        target,
+        args,
+        message,
+        senderUsername: `${message.author.username}#${message.author.discriminator}`,
+      },
+      messageText
+    ),
     gif
   );
 };
@@ -54,9 +63,9 @@ const noGifs = gifUrls =>
   gifUrls === 'undefined' || !gifUrls || gifUrls.length === 0;
 
 const parseMessageText = (context = {}, source: string) => {
-  const template = handlebars.compile(`${source}`);
+  const template = handlebars.compile(source);
 
   const result = template(context);
-  // console.log({ source, context, result });
+  console.log({ source, context, result });
   return result;
 };
