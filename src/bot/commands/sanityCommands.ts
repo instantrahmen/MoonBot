@@ -1,6 +1,8 @@
-import { getRandomGifFromArray } from '../gif';
-import { client, sanityConfig } from '../../sanity';
-import handlebars from 'handlebars';
+import { getRandomGifFromArray } from "../gif";
+import { client, sanityConfig } from "../../sanity";
+import handlebars from "handlebars";
+import ejs from "ejs";
+import { inspect } from "util";
 
 let cachedCommands = [];
 export const clearCommandCache = () => (cachedCommands = []);
@@ -8,6 +10,7 @@ export const clearCommandCache = () => (cachedCommands = []);
 const getCommandInfo = command => {
   const query = `*[_type == "commands" && command == $command] {
     messageText,
+    templateEngine,
     "gifUrls": gifs[].asset->url
   }`;
   const params = { command };
@@ -35,14 +38,16 @@ export const allSanityCommands = async () => {
 };
 
 export const sanityCommand = command => async ({ message, args }) => {
-  let { gifUrls = [], messageText = '' } = (await getCommandInfo(command))[0];
+  let { gifUrls = [], messageText = "", templateEngine } = (
+    await getCommandInfo(command)
+  )[0];
   const gif = noGifs(gifUrls)
     ? {}
     : { files: [getRandomGifFromArray({ images: gifUrls })] };
   // console.log(gifUrls, gif);
 
   const sender = message.member.user;
-  const target = args.length >= 1 ? args[0] : 'nobody';
+  const target = args.length >= 1 ? args[0] : "nobody";
 
   return message.channel.send(
     parseMessageText(
@@ -51,21 +56,32 @@ export const sanityCommand = command => async ({ message, args }) => {
         target,
         args,
         message,
-        senderUsername: `${message.author.username}#${message.author.discriminator}`,
+        inspect,
+        senderUsername: `${message.author.username}#${message.author.discriminator}`
       },
-      messageText
+      messageText,
+      templateEngine
     ),
     gif
   );
 };
 
 const noGifs = gifUrls =>
-  gifUrls === 'undefined' || !gifUrls || gifUrls.length === 0;
+  gifUrls === "undefined" || !gifUrls || gifUrls.length === 0;
 
-const parseMessageText = (context = {}, source: string) => {
-  const template = handlebars.compile(source);
-
-  const result = template(context);
-  console.log({ source, context, result });
-  return result;
+const parseMessageText = (
+  context = {},
+  source: string,
+  templateEngine = "handlebars"
+) => {
+  console.log({ ctx: inspect(context) });
+  if (templateEngine === "ejs") {
+    return ejs.render(source, context, {
+      escape: input => input // In this case we don't want to ever escape html because we aren't rendering to html
+    });
+  } else {
+    const template = handlebars.compile(source);
+    const result = template(context);
+    return result;
+  }
 };
