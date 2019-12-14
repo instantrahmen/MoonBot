@@ -41,7 +41,7 @@ export const sanityCommand = command => async ({ message, args }) => {
   let { gifUrls = [], messageText = "", templateEngine } = (
     await getCommandInfo(command)
   )[0];
-  const gif = noGifs(gifUrls)
+  let gif = noGifs(gifUrls)
     ? {}
     : { files: [getRandomGifFromArray({ images: gifUrls })] };
   // console.log(gifUrls, gif);
@@ -49,21 +49,25 @@ export const sanityCommand = command => async ({ message, args }) => {
   const sender = message.member.user;
   const target = args.length >= 1 ? args[0] : "nobody";
 
-  return message.channel.send(
-    parseMessageText(
-      {
-        sender,
-        target,
-        args,
-        message,
-        inspect,
-        senderUsername: `${message.author.username}#${message.author.discriminator}`
-      },
-      messageText,
-      templateEngine
-    ),
-    gif
+  const ignoreGif = () => {
+    gif = {};
+  };
+
+  const parsedText = parseMessageText(
+    {
+      sender,
+      target,
+      args,
+      message,
+      inspect,
+      senderUsername: `${message.author.username}#${message.author.discriminator}`,
+      ignoreGif
+    },
+    messageText,
+    templateEngine
   );
+
+  return message.channel.send(parsedText, gif);
 };
 
 const noGifs = gifUrls =>
@@ -75,13 +79,14 @@ const parseMessageText = (
   templateEngine = "handlebars"
 ) => {
   console.log({ ctx: inspect(context) });
+  let result;
   if (templateEngine === "ejs") {
-    return ejs.render(source, context, {
+    result = ejs.render(source, context, {
       escape: input => input // In this case we don't want to ever escape html because we aren't rendering to html
     });
   } else {
     const template = handlebars.compile(source);
-    const result = template(context);
-    return result;
+    result = template(context);
   }
+  return result;
 };
