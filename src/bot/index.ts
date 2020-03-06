@@ -1,16 +1,16 @@
-require('dotenv').config();
-import * as Discord from 'discord.js';
+require("dotenv").config();
+import * as Discord from "discord.js";
 
-import { commands as initCommands } from './commands';
+import { commands as initCommands } from "./commands";
 const client = new Discord.Client();
 
-const prefix = process.env.NODE_ENV === 'production' ? 'moon!' : '__moon!';
+const prefix = process.env.NODE_ENV === "production" ? "moon!" : "__moon!";
 
-client.once('ready', () => {
-  console.log('Moonbot is ready!');
+client.once("ready", () => {
+  console.log("Moonbot is ready!");
 });
 
-client.on('message', async message => {
+client.on("message", async message => {
   // console.log({ message });
 
   const lowercaseMessage = message.content.toLowerCase();
@@ -20,13 +20,13 @@ client.on('message', async message => {
   const command = args.shift().toLowerCase();
   const commands = await initCommands();
   console.log({ commands });
-  if (command.length === 0 || typeof commands[command] === 'undefined') {
+  if (command.length === 0 || typeof commands[command] === "undefined") {
     commands.default({ message, args });
   } else {
     try {
       commands[command]({ message, args });
     } catch (e) {
-      message.channel.send('Command failed');
+      message.channel.send("Command failed");
       commands.debug({ message, args, error: e });
     }
   }

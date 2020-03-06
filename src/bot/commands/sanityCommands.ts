@@ -46,28 +46,45 @@ export const sanityCommand = command => async ({ message, args }) => {
     : { files: [getRandomGifFromArray({ images: gifUrls })] };
   // console.log(gifUrls, gif);
 
-  const sender = message.member.user;
-  const target = args.length >= 1 ? args[0] : "nobody";
+  try {
+    const sender = message.member
+      ? message.member.user
+      : message.guild.member(message.author).user;
 
-  const ignoreGif = () => {
-    gif = {};
-  };
+    if (!sender) {
+      console.error({ message });
+      return message.channel.send(
+        `Oops, that user hasn't been cached I guess.`
+      );
+    }
 
-  const parsedText = parseMessageText(
-    {
-      sender,
-      target,
-      args,
-      message,
-      inspect,
-      senderUsername: `${message.author.username}#${message.author.discriminator}`,
-      ignoreGif
-    },
-    messageText,
-    templateEngine
-  );
+    const target = args.length >= 1 ? args[0] : "nobody";
 
-  return message.channel.send(parsedText, gif);
+    const ignoreGif = () => {
+      gif = {};
+    };
+
+    const parsedText = parseMessageText(
+      {
+        sender,
+        target,
+        args,
+        message,
+        inspect,
+        senderUsername: `${message.author.username}#${message.author.discriminator}`,
+        ignoreGif
+      },
+      messageText,
+      templateEngine
+    );
+
+    console.log({ MEMBER_FROM_GUILD: message.guild.member(message.author) });
+
+    return message.channel.send(parsedText, gif);
+  } catch (e) {
+    console.error({ message });
+    return message.channel.send("oops");
+  }
 };
 
 const noGifs = gifUrls =>
