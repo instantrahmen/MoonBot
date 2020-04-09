@@ -973,35 +973,35 @@
   version "9.3.2"
   resolved "https://registry.yarnpkg.com/@next/polyfill-nomodule/-/polyfill-nomodule-9.3.2.tgz#f8e282fdeb448eb6b70bcc18c5d46c911072687a"
 
-"@sanity/client@^0.146.0":
-  version "0.146.0"
-  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-0.146.0.tgz#7dfabb7f505c88ef5019353190497ae7fa7f7734"
+"@sanity/client@^1.149.7":
+  version "1.149.7"
+  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-1.149.7.tgz#117f870cedc5fa51ee36e5003bfb491c51b9f1da"
   dependencies:
-    "@sanity/eventsource" "0.146.0"
-    "@sanity/generate-help-url" "0.146.0"
-    "@sanity/observable" "0.146.0"
+    "@sanity/eventsource" "1.149.0"
+    "@sanity/generate-help-url" "1.149.0"
+    "@sanity/observable" "1.149.0"
     deep-assign "^2.0.0"
     get-it "^5.0.0"
     make-error "^1.3.0"
     object-assign "^4.1.1"
 
-"@sanity/eventsource@0.146.0":
-  version "0.146.0"
-  resolved "https://registry.yarnpkg.com/@sanity/eventsource/-/eventsource-0.146.0.tgz#f39e0e625c0442201b709cd8cef40ea009df0d9b"
+"@sanity/eventsource@1.149.0":
+  version "1.149.0"
+  resolved "https://registry.yarnpkg.com/@sanity/eventsource/-/eventsource-1.149.0.tgz#ac4b517268976980e958223ba537a15ac6339f50"
   dependencies:
     eventsource "^1.0.6"
     eventsource-polyfill "^0.9.6"
 
-"@sanity/generate-help-url@0.146.0":
-  version "0.146.0"
-  resolved "https://registry.yarnpkg.com/@sanity/generate-help-url/-/generate-help-url-0.146.0.tgz#72791e39e6dfd50a73236cd13e6870645d822795"
+"@sanity/generate-help-url@1.149.0":
+  version "1.149.0"
+  resolved "https://registry.yarnpkg.com/@sanity/generate-help-url/-/generate-help-url-1.149.0.tgz#765c2803ae67da16b8349f71317873b67f04b486"
 
-"@sanity/observable@0.146.0":
-  version "0.146.0"
-  resolved "https://registry.yarnpkg.com/@sanity/observable/-/observable-0.146.0.tgz#292cb0864692f8878136fb8bb5e8598f6ef970b5"
+"@sanity/observable@1.149.0":
+  version "1.149.0"
+  resolved "https://registry.yarnpkg.com/@sanity/observable/-/observable-1.149.0.tgz#8636f7f3f3d39c3ff106f871c01b9258f5fb6370"
   dependencies:
     object-assign "^4.1.1"
-    rxjs "^6.5.2"
+    rxjs "^6.5.3"
 
 "@sanity/timed-out@^4.0.2":
   version "4.0.2"
@@ -5549,9 +5549,9 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-rxjs@^6.5.2:
-  version "6.5.3"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.3.tgz#510e26317f4db91a7eb1de77d9dd9ba0a4899a3a"
+rxjs@^6.5.3:
+  version "6.5.5"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.5.tgz#c5c884e3094c8cfee31bf27eb87e54ccfc87f9ec"
   dependencies:
     tslib "^1.9.0"
 
