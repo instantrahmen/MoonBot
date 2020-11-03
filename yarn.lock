@@ -1080,9 +1080,9 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@types/parse-color/-/parse-color-1.0.0.tgz#8eb6854d9a607e143fea1adcea5c832bcc2b8aba"
 
-"@types/puppeteer@^1.20.2":
-  version "1.20.2"
-  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-1.20.2.tgz#b123551fa868b78f1c65ef1cfc0dd5ea1f24234c"
+"@types/puppeteer@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-5.4.0.tgz#1ef860bd7a9dcf0c4633aac8c0ec21f75b431868"
   dependencies:
     "@types/node" "*"
 
