@@ -1,5 +1,5 @@
 import express from 'express';
-import { User } from './db';
+// import { User } from './db';
 
 const app = express();
 
@@ -12,18 +12,18 @@ export const startExpressServer = () => {
     res.send('Server running');
   });
 
-  app.get('/api/profiles/:id', async (req, res) => {
-    const discordId = req.params.id;
-    const user = await User.findOne({ discordId });
+  // app.get('/api/profiles/:id', async (req, res) => {
+  //   const discordId = req.params.id;
+  //   const user = await User.findOne({ discordId });
 
-    res.send(user);
-  });
+  //   res.send(user);
+  // });
 
-  app.get('/api/profiles', async (req, res) => {
-    const users = await User.find();
+  // app.get('/api/profiles', async (req, res) => {
+  //   const users = await User.find();
 
-    res.send({ users });
-  });
+  //   res.send({ users });
+  // });
 
   app.listen(PORT, () => {
     console.info(`listening on port ${PORT}`);

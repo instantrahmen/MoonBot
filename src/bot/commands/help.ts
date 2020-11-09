@@ -7,10 +7,10 @@ export const helpInfo = {
   snapneck: { desc: `Shiro snaps their neck!`, usage: `moon!snapneck` },
   no: { desc: `Say no`, usage: `moon!no` },
   wheeze: { desc: `Wheeze`, usage: `moon!wheeze` },
-  birthday: {
-    desc: `Remember birthdays`,
-    usage: `moon!birthday set <date> ${'`'} or ${'`'}moon!birthday check`,
-  },
+  // birthday: {
+  //   desc: `Remember birthdays`,
+  //   usage: `moon!birthday set <date> ${'`'} or ${'`'}moon!birthday check`,
+  // },
   cutie: {
     desc: `Decide if someone is a cutie (hint: you are)`,
     usage: `moon!cutie <user>`,

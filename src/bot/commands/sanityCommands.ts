@@ -7,6 +7,9 @@ import { inspect } from "util";
 let cachedCommands = [];
 export const clearCommandCache = () => (cachedCommands = []);
 
+const fetchMember = (message) => message.guild.fetchMember(message.author)
+const getSender = async (message) => (await fetchMember(message)).user
+
 const getCommandInfo = command => {
   const query = `*[_type == "commands" && command == $command] {
     messageText,
@@ -44,15 +47,16 @@ export const sanityCommand = command => async ({ message, args }) => {
   let gif = noGifs(gifUrls)
     ? {}
     : { files: [getRandomGifFromArray({ images: gifUrls })] };
-  // console.log(gifUrls, gif);
+
 
   try {
-    const sender = message.member
-      ? message.member.user
-      : message.guild.member(message.author).user;
-
+    // const sender = !!message.member
+    //   ? message.member.user
+    //   : await fetchMember(message).user
+    const sender = await getSender(message)
     if (!sender) {
-      console.error({ message });
+      console.log({sender, member: await fetchMember(message), author: message.author, message})
+
       return message.channel.send(
         `Oops, that user hasn't been cached I guess.`
       );
@@ -78,14 +82,21 @@ export const sanityCommand = command => async ({ message, args }) => {
       templateEngine
     );
 
-    console.log({ MEMBER_FROM_GUILD: message.guild.member(message.author) });
+    // console.log({ MEMBER_FROM_GUILD: message.guild.members.get(message.author.id), author: message.author });
 
     return message.channel.send(parsedText, gif);
   } catch (e) {
-    console.error({ message });
-    return message.channel.send("oops");
+    console.log({member: fetchMember(message), author: message.author})
+    const errorObject = {error: e, message}
+    console.error(errorObject)
   }
 };
+
+
+// const stringify = (obj) => JSON.stringify( obj, (key, value) => {
+//   if(key == 'parent') { return '{{parent}}';}
+//   else {return value;}
+// }, 2)
 
 const noGifs = gifUrls =>
   gifUrls === "undefined" || !gifUrls || gifUrls.length === 0;

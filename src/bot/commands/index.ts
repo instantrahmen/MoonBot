@@ -3,42 +3,42 @@ import parseColor from 'parse-color';
 import { getRandomGif, getRandomGifFromArray } from '../gif';
 import { help } from './help';
 import { debug } from './debug';
-import { birthday } from './birthday';
+// import { birthday } from './birthday';
 import { cutie } from './cutie';
 import { boop } from './boop';
 import { allSanityCommands, clearCommandCache } from './sanityCommands';
-import { register, updateUserInfo } from './register';
+// import { register, updateUserInfo } from './register';
 import { userSpecificCommands } from './user-specifc-commands';
 import { profile } from './profile';
 
 export const commands = async () => ({
   help,
   debug,
-  birthday,
+  // birthday,
   cutie,
-  register,
+  // register,
   profile,
-  setbio: async ({ message, args }) => {
-    try {
-      const bio = args.join(' ');
-      await updateUserInfo({ message, args, bio });
-      message.channel.send(`Bio updated to: \n${bio}`);
-    } catch (e) {
-      message.channel.send(`Error: could not update bio`);
-      console.error(e);
-    }
-  },
-  setcolor: async ({ message, args }) => {
-    try {
-      const color = parseColor(args[0]);
-      console.log({ color });
-      await updateUserInfo({ message, args, color: color.hex });
-      message.channel.send(`Color updated to: \n${color.hex}`);
-    } catch (e) {
-      message.channel.send(`Error: could not update color`);
-      console.error(e);
-    }
-  },
+  // setbio: async ({ message, args }) => {
+  //   try {
+  //     const bio = args.join(' ');
+  //     await updateUserInfo({ message, args, bio });
+  //     message.channel.send(`Bio updated to: \n${bio}`);
+  //   } catch (e) {
+  //     message.channel.send(`Error: could not update bio`);
+  //     console.error(e);
+  //   }
+  // },
+  // setcolor: async ({ message, args }) => {
+  //   try {
+  //     const color = parseColor(args[0]);
+  //     console.log({ color });
+  //     await updateUserInfo({ message, args, color: color.hex });
+  //     message.channel.send(`Color updated to: \n${color.hex}`);
+  //   } catch (e) {
+  //     message.channel.send(`Error: could not update color`);
+  //     console.error(e);
+  //   }
+  // },
 
   snapneck: ({ message, args }) => {
     const gifs = [

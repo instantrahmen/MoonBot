@@ -1,4 +1,4 @@
-import { User } from '../../db';
+// import { User } from '../../db';
 import puppeteer from 'puppeteer';
 
 const clientUrl = process.env.CLIENT_URL;
