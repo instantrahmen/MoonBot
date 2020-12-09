@@ -710,35 +710,39 @@
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
 
-"@sanity/client@^0.146.0":
-  version "0.146.0"
-  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-0.146.0.tgz#7dfabb7f505c88ef5019353190497ae7fa7f7734"
+"@rexxars/eventsource-polyfill@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@rexxars/eventsource-polyfill/-/eventsource-polyfill-1.0.0.tgz#ab46f2f44da23aedd6f51f13d92a194a5367525b"
+
+"@sanity/client@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-2.1.0.tgz#89af75234caeda606afaf93b3db7ea45dace0f8c"
   dependencies:
-    "@sanity/eventsource" "0.146.0"
-    "@sanity/generate-help-url" "0.146.0"
-    "@sanity/observable" "0.146.0"
+    "@sanity/eventsource" "2.0.1"
+    "@sanity/generate-help-url" "2.0.9"
+    "@sanity/observable" "2.0.9"
     deep-assign "^2.0.0"
-    get-it "^5.0.0"
+    get-it "^5.0.3"
     make-error "^1.3.0"
     object-assign "^4.1.1"
 
-"@sanity/eventsource@0.146.0":
-  version "0.146.0"
-  resolved "https://registry.yarnpkg.com/@sanity/eventsource/-/eventsource-0.146.0.tgz#f39e0e625c0442201b709cd8cef40ea009df0d9b"
+"@sanity/eventsource@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@sanity/eventsource/-/eventsource-2.0.1.tgz#5caef034e77705ce46a10a66479ef27b8da04f26"
   dependencies:
+    "@rexxars/eventsource-polyfill" "^1.0.0"
     eventsource "^1.0.6"
-    eventsource-polyfill "^0.9.6"
 
-"@sanity/generate-help-url@0.146.0":
-  version "0.146.0"
-  resolved "https://registry.yarnpkg.com/@sanity/generate-help-url/-/generate-help-url-0.146.0.tgz#72791e39e6dfd50a73236cd13e6870645d822795"
+"@sanity/generate-help-url@2.0.9":
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@sanity/generate-help-url/-/generate-help-url-2.0.9.tgz#ba9268dd6c2571bf4b95a83a13462fdeff2ba883"
 
-"@sanity/observable@0.146.0":
-  version "0.146.0"
-  resolved "https://registry.yarnpkg.com/@sanity/observable/-/observable-0.146.0.tgz#292cb0864692f8878136fb8bb5e8598f6ef970b5"
+"@sanity/observable@2.0.9":
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@sanity/observable/-/observable-2.0.9.tgz#587d6847b8814a32be1d6c1f2d135df521d09329"
   dependencies:
     object-assign "^4.1.1"
-    rxjs "^6.5.2"
+    rxjs "^6.5.3"
 
 "@sanity/timed-out@^4.0.2":
   version "4.0.2"
@@ -2188,10 +2192,6 @@ events@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/events/-/events-3.0.0.tgz#9a0a0dfaf62893d92b875b8f2698ca4114973e88"
 
-eventsource-polyfill@^0.9.6:
-  version "0.9.6"
-  resolved "https://registry.yarnpkg.com/eventsource-polyfill/-/eventsource-polyfill-0.9.6.tgz#10e0d187f111b167f28fdab918843ce7d818f13c"
-
 eventsource@^1.0.6:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/eventsource/-/eventsource-1.0.7.tgz#8fbc72c93fcd34088090bc0a4e64f4b5cee6d8d0"
@@ -2499,9 +2499,9 @@ gauge@~2.7.3:
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
 
-get-it@^5.0.0:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/get-it/-/get-it-5.0.2.tgz#4839e7160d206fbd1353950ebce721b47292eb9c"
+get-it@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/get-it/-/get-it-5.0.3.tgz#482a72d91b482ccf64ecf0499b5456952b1ca9d0"
   dependencies:
     "@sanity/timed-out" "^4.0.2"
     create-error-class "^3.0.2"
@@ -4817,9 +4817,9 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-rxjs@^6.5.2:
-  version "6.5.3"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.3.tgz#510e26317f4db91a7eb1de77d9dd9ba0a4899a3a"
+rxjs@^6.5.3:
+  version "6.6.3"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.3.tgz#8ca84635c4daa900c0d3967a6ee7ac60271ee552"
   dependencies:
     tslib "^1.9.0"
 
