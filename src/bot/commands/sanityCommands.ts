@@ -7,17 +7,27 @@ import { inspect } from "util";
 let cachedCommands = [];
 export const clearCommandCache = () => (cachedCommands = []);
 
-const fetchMember = (message) => message.guild.fetchMember(message.author)
-const getSender = async (message) => (await fetchMember(message)).user
+const fetchMember = (message) => message.guild.fetchMember(message.author);
+const getSender = async (message) => (await fetchMember(message)).user;
 
-const getCommandInfo = command => {
+// Just a wrapper to prevent crashing on fail
+const sanityFetch = (...args) => {
+  try {
+    return client.fetch(...args);
+  } catch (e) {
+    console.warn("Failed to connect to Sanity");
+    console.warn(e.message);
+  }
+};
+
+const getCommandInfo = (command) => {
   const query = `*[_type == "commands" && command == $command] {
     messageText,
     templateEngine,
     "gifUrls": gifs[].asset->url
   }`;
   const params = { command };
-  return client.fetch(query, params);
+  return sanityFetch(query, params);
 };
 
 const getAllCommands = () => {
@@ -25,7 +35,7 @@ const getAllCommands = () => {
     command
   }`;
   const params = {};
-  return client.fetch(query, params);
+  return sanityFetch(query, params);
 };
 
 export const allSanityCommands = async () => {
@@ -40,7 +50,7 @@ export const allSanityCommands = async () => {
   return commands;
 };
 
-export const sanityCommand = command => async ({ message, args }) => {
+export const sanityCommand = (command) => async ({ message, args }) => {
   let { gifUrls = [], messageText = "", templateEngine } = (
     await getCommandInfo(command)
   )[0];
@@ -48,14 +58,15 @@ export const sanityCommand = command => async ({ message, args }) => {
     ? {}
     : { files: [getRandomGifFromArray({ images: gifUrls })] };
 
-
   try {
-    // const sender = !!message.member
-    //   ? message.member.user
-    //   : await fetchMember(message).user
-    const sender = await getSender(message)
+    const sender = await getSender(message);
     if (!sender) {
-      console.log({sender, member: await fetchMember(message), author: message.author, message})
+      console.log({
+        sender,
+        member: await fetchMember(message),
+        author: message.author,
+        message,
+      });
 
       return message.channel.send(
         `Oops, that user hasn't been cached I guess.`
@@ -76,7 +87,7 @@ export const sanityCommand = command => async ({ message, args }) => {
         message,
         inspect,
         senderUsername: `${message.author.username}#${message.author.discriminator}`,
-        ignoreGif
+        ignoreGif,
       },
       messageText,
       templateEngine
@@ -86,19 +97,18 @@ export const sanityCommand = command => async ({ message, args }) => {
 
     return message.channel.send(parsedText, gif);
   } catch (e) {
-    console.log({member: fetchMember(message), author: message.author})
-    const errorObject = {error: e, message}
-    console.error(errorObject)
+    console.log({ member: fetchMember(message), author: message.author });
+    const errorObject = { error: e, message };
+    console.error(errorObject);
   }
 };
-
 
 // const stringify = (obj) => JSON.stringify( obj, (key, value) => {
 //   if(key == 'parent') { return '{{parent}}';}
 //   else {return value;}
 // }, 2)
 
-const noGifs = gifUrls =>
+const noGifs = (gifUrls) =>
   gifUrls === "undefined" || !gifUrls || gifUrls.length === 0;
 
 const parseMessageText = (
@@ -110,7 +120,7 @@ const parseMessageText = (
   let result;
   if (templateEngine === "ejs") {
     result = ejs.render(source, context, {
-      escape: input => input // In this case we don't want to ever escape html because we aren't rendering to html
+      escape: (input) => input, // In this case we don't want to ever escape html because we aren't rendering to html
     });
   } else {
     const template = handlebars.compile(source);
